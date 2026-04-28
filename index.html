@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Everstage Live · Fortnightly demos for RevOps, Sales Comp, and Ops teams</title>
+<meta name="description" content="45 minutes inside Everstage, every other Wednesday. An Everstage AE runs a real comp workflow live in the product at 12 PM EST. No slides. No pitch.">
+<meta property="og:title" content="Everstage Live · Fortnightly demos for RevOps, Sales Comp, and Ops teams">
+<meta property="og:description" content="45 minutes inside Everstage, every other Wednesday. An AE runs a real comp workflow live in the product. No slides. No pitch.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0E1F3F;
+    --navy-soft: #14213D;
+    --slate: #4B5675;
+    --slate-light: #6B7691;
+    --bg: #ffffff;
+    --bg-soft: #F7F8FB;
+    --bg-cream: #FAF8F3;
+    --bg-blue-tint: #F5F8FF;
+    --bg-blue-soft: #EEF3FF;
+    --bg-blue-mid: #E4ECFF;
+    --border: #E5E7EE;
+    --border-strong: #CDD2DD;
+    --border-blue: #D6E0FF;
+    --blue: #1B5BFF;
+    --blue-dark: #1448D2;
+    --blue-50: #EEF3FF;
+    --blue-100: #DDE6FF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--navy);
+    background: var(--bg);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+  /* Nav */
+  .nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--border); }
+  .nav-logo { font-size: 20px; font-weight: 700; color: var(--navy); letter-spacing: -0.01em; }
+  .nav-link { font-size: 14px; color: var(--slate); text-decoration: none; font-weight: 500; }
+  .nav-link:hover { color: var(--navy); }
+
+  /* Hero — soft blue radial wash in the background */
+  .hero-wrap {
+    position: relative;
+    background:
+      radial-gradient(ellipse 900px 500px at 85% -10%, rgba(27,91,255,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 700px 400px at 10% 30%, rgba(27,91,255,0.05) 0%, transparent 65%),
+      var(--bg);
+    overflow: hidden;
+  }
+  .hero { padding: 72px 0 32px; position: relative; }
+  .eyebrow { font-size: 13px; color: var(--slate); font-weight: 500; }
+  .eyebrow-caps { font-size: 12px; color: var(--slate); font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; }
+  h1 { font-size: 56px; line-height: 1.05; font-weight: 600; color: var(--navy); letter-spacing: -0.022em; margin: 18px 0 22px; max-width: 880px; }
+  .lead { font-size: 18px; color: var(--slate); line-height: 1.55; max-width: 640px; }
+  .bullets { margin-top: 36px; list-style: none; max-width: 760px; }
+  .bullets li { display: flex; gap: 14px; padding: 8px 0; font-size: 16px; color: var(--navy-soft); line-height: 1.55; }
+  .bullets .arrow { color: var(--blue); flex-shrink: 0; font-weight: 600; }
+  .bullets b { font-weight: 600; color: var(--navy); }
+
+  /* Live-next card — blue tinted background to pop */
+  .live-next {
+    margin: 64px 0 40px;
+    border: 1px solid var(--border-blue);
+    border-radius: 18px;
+    padding: 36px 40px;
+    background: linear-gradient(135deg, var(--bg-blue-tint) 0%, var(--bg-blue-soft) 100%);
+    box-shadow: 0 1px 3px rgba(14,31,63,0.04), 0 8px 24px rgba(27,91,255,0.06);
+    position: relative;
+    overflow: hidden;
+  }
+  .live-next::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(27,91,255,0.10) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .live-next > * { position: relative; }
+  .live-next-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--blue); font-weight: 600; }
+  .live-next-eyebrow::before {
+    content: ''; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--blue); box-shadow: 0 0 0 4px rgba(27,91,255,0.18);
+  }
+  .live-next h2 { font-size: 28px; font-weight: 600; line-height: 1.25; margin: 14px 0 12px; color: var(--navy); letter-spacing: -0.015em; }
+  .live-next p { font-size: 15px; color: var(--slate); line-height: 1.65; }
+  .live-next-divider { border-top: 1px solid rgba(27,91,255,0.14); margin: 28px 0; }
+  .live-next-foot { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .speaker { font-size: 14px; color: var(--slate); line-height: 1.5; }
+  .speaker b { color: var(--navy); font-weight: 600; display: block; font-size: 15px; }
+  .btn { background: var(--blue); color: white; padding: 13px 26px; border-radius: 10px; font-size: 14px; font-weight: 600; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.15s, transform 0.1s; }
+  .btn:hover { background: var(--blue-dark); }
+  .btn:active { transform: scale(0.98); }
+  .btn-light { background: white; color: var(--navy); }
+  .btn-light:hover { background: #F0F2F8; }
+  .btn-large { padding: 16px 32px; font-size: 15px; }
+  .micro { font-size: 12px; color: var(--slate-light); margin-top: 10px; text-align: right; }
+
+  /* Logo strip */
+  .logos { padding: 56px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); text-align: center; }
+  .logos-row { display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap; margin-top: 28px; font-size: 16px; color: var(--slate-light); font-weight: 600; }
+
+  /* Sections */
+  .section { padding: 112px 0; border-bottom: 1px solid var(--border); }
+  .section h2 { font-size: 44px; font-weight: 600; color: var(--navy); line-height: 1.12; letter-spacing: -0.022em; margin: 14px 0 16px; }
+  .section-sub { font-size: 17px; color: var(--slate); line-height: 1.6; max-width: 640px; }
+
+  /* Section variants — blue tint backgrounds */
+  .section-tint { background: var(--bg-blue-tint); border-bottom: 1px solid var(--border); }
+  .section-soft { background: var(--bg-soft); border-bottom: 1px solid var(--border); }
+
+  /* Sessions */
+  .sessions { margin-top: 48px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .session-card { padding: 28px 30px; background: var(--bg); border: 1px solid var(--border); border-radius: 14px; transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s; }
+  .session-card:hover { border-color: var(--border-blue); box-shadow: 0 2px 12px rgba(27,91,255,0.08); transform: translateY(-1px); }
+  .session-date { font-size: 13px; color: var(--blue); font-weight: 600; }
+  .session-title { font-size: 19px; font-weight: 600; color: var(--navy); line-height: 1.3; margin: 10px 0 12px; letter-spacing: -0.005em; }
+  .session-title-tbd { font-size: 19px; font-weight: 600; color: var(--slate-light); line-height: 1.3; margin: 6px 0 14px; letter-spacing: -0.005em; font-style: italic; }
+  .session-theme { font-size: 13px; color: var(--slate-light); font-weight: 500; margin-top: 8px; font-style: italic; }
+  .session-desc { font-size: 14px; color: var(--slate); line-height: 1.6; margin-bottom: 18px; }
+  .session-link { font-size: 14px; color: var(--blue); font-weight: 600; text-decoration: none; }
+  .session-link:hover { text-decoration: underline; }
+
+  /* Videos */
+  .videos { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .video-card { background: var(--bg); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s; }
+  .video-card:hover { border-color: var(--border-blue); box-shadow: 0 2px 12px rgba(27,91,255,0.08); transform: translateY(-1px); }
+  .video-thumb { background: linear-gradient(135deg, #E4ECFF 0%, #C9D7FF 100%); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; color: var(--blue); position: relative; overflow: hidden; }
+  .video-thumb::after {
+    content: ''; position: absolute; top: -40%; right: -20%;
+    width: 60%; height: 140%;
+    background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
+  }
+  .video-thumb svg { width: 48px; height: 48px; position: relative; z-index: 1; }
+  .video-body { padding: 22px 24px 26px; }
+  .video-title { font-size: 16px; font-weight: 600; color: var(--navy); line-height: 1.3; margin-bottom: 8px; }
+  .video-desc { font-size: 13px; color: var(--slate); line-height: 1.6; margin-bottom: 16px; }
+  .video-link { font-size: 13px; color: var(--blue); font-weight: 600; text-decoration: none; }
+  .video-link:hover { text-decoration: underline; }
+
+  /* Pillars */
+  .pillars { margin-top: 56px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .pillar { padding: 32px; background: var(--bg); border: 1px solid var(--border); border-radius: 14px; transition: border-color 0.15s, box-shadow 0.15s; }
+  .pillar:hover { border-color: var(--border-blue); box-shadow: 0 2px 12px rgba(27,91,255,0.08); }
+  .pillar-num { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; color: var(--blue); text-transform: uppercase; }
+  .pillar h3 { font-size: 22px; font-weight: 600; color: var(--navy); line-height: 1.3; margin: 16px 0 12px; letter-spacing: -0.01em; }
+  .pillar p { font-size: 15px; color: var(--slate); line-height: 1.7; }
+
+  /* Quote — blue tint instead of cream */
+  .quote {
+    padding: 128px 24px;
+    text-align: center;
+    background:
+      radial-gradient(ellipse 800px 400px at 50% 0%, rgba(27,91,255,0.06) 0%, transparent 70%),
+      var(--bg-blue-tint);
+  }
+  .quote-text { font-size: 30px; line-height: 1.4; color: var(--navy); font-weight: 400; max-width: 920px; margin: 0 auto; font-family: 'Playfair Display', Georgia, serif; font-style: italic; letter-spacing: -0.01em; }
+  .quote-mark { display: block; font-size: 80px; color: var(--blue); line-height: 0.3; margin-bottom: 20px; opacity: 0.5; font-family: 'Playfair Display', Georgia, serif; font-style: italic; }
+  .quote-attr { margin-top: 36px; font-size: 14px; color: var(--slate); }
+  .quote-attr b { color: var(--navy); font-weight: 600; }
+
+  /* Pitch */
+  .pitch-form { margin-top: 44px; max-width: 620px; display: flex; flex-direction: column; gap: 14px; }
+  .input { padding: 15px 18px; border: 1px solid var(--border-strong); border-radius: 10px; background: white; font-size: 15px; color: var(--navy); font-family: inherit; outline: none; transition: border-color 0.15s, box-shadow 0.15s; }
+  .input::placeholder { color: var(--slate-light); }
+  .input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(27,91,255,0.12); }
+  .pitch-row { display: flex; gap: 12px; }
+  .pitch-row .input { flex: 1; }
+  .pitch-micro { font-size: 13px; color: var(--slate-light); margin-top: 6px; }
+
+  /* Banner */
+  .banner { background: var(--navy); padding: 112px 32px; text-align: center; color: white; position: relative; overflow: hidden; }
+  .banner::before {
+    content: ''; position: absolute; top: -120px; right: -120px; width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(27,91,255,0.22) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .banner::after {
+    content: ''; position: absolute; bottom: -120px; left: -120px; width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(27,91,255,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .banner-inner { position: relative; }
+  .banner h2 { font-size: 44px; font-weight: 600; line-height: 1.15; margin: 0 auto 36px; max-width: 800px; color: white; letter-spacing: -0.022em; }
+
+  /* Footer */
+  .footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 64px 0 36px; }
+  .footer-grid { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .footer-logo { font-size: 22px; font-weight: 700; color: white; }
+  .footer-tag { font-size: 14px; color: rgba(255,255,255,0.5); margin-top: 14px; max-width: 300px; line-height: 1.6; }
+  .footer-col h4 { font-size: 13px; font-weight: 600; color: white; margin-bottom: 18px; letter-spacing: 0.02em; }
+  .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.55); text-decoration: none; padding: 6px 0; transition: color 0.15s; }
+  .footer-col a:hover { color: white; }
+  .footer-bottom { padding-top: 28px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 12px; color: rgba(255,255,255,0.4); }
+  .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; }
+  .footer-bottom a:hover { color: white; }
+
+  /* Responsive */
+  @media (max-width: 880px) {
+    .container { padding: 0 24px; }
+    h1 { font-size: 38px; }
+    .section h2, .banner h2 { font-size: 30px; }
+    .quote-text { font-size: 22px; }
+    .live-next { padding: 28px 24px; }
+    .live-next h2 { font-size: 22px; }
+    .section { padding: 72px 0; }
+    .quote { padding: 88px 20px; }
+    .banner { padding: 80px 24px; }
+    .sessions, .videos, .pillars { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .pitch-row { flex-direction: column; }
+    .live-next-foot { flex-direction: column; align-items: flex-start; }
+    .micro { text-align: left; }
+  }
+  @media (max-width: 540px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .logos-row { gap: 20px; font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="container">
+    <nav class="nav">
+      <div class="nav-logo">Everstage</div>
+      <a href="#" class="nav-link">Talk to sales</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero-wrap">
+    <section class="container hero">
+      <div class="eyebrow">Everstage Live · Fortnightly demos for RevOps, Sales Comp, and Ops teams</div>
+      <h1>45 minutes inside Everstage, every other Wednesday.</h1>
+      <p class="lead">Every session, an Everstage AE runs a real comp workflow live in the product at 12 PM EST. No slides. No pitch.</p>
+      <ul class="bullets">
+        <li><span class="arrow">→</span><span><b>See real workflows.</b> Plan design, mid-quarter changes, close, ICM migrations, payee rollout, audit-ready reporting.</span></li>
+        <li><span class="arrow">→</span><span><b>Ask anything live.</b> The last 10 minutes are yours.</span></li>
+        <li><span class="arrow">→</span><span><b>Catch up on demand.</b> Recordings post within 24 hours.</span></li>
+      </ul>
+
+      <div class="live-next">
+        <div class="live-next-eyebrow">Live next · Wed, May 20 · 12:00 PM EST</div>
+        <h2>How to run your first month on Everstage after moving off spreadsheets</h2>
+        <p>Walk through what day one looks like, then what month one looks like once plan design, the calc engine, and Databooks are in place. Built for comp teams ready to stop running the business out of spreadsheets.</p>
+        <div class="live-next-divider"></div>
+        <div class="live-next-foot">
+          <div class="speaker"><b>[AE name]</b>Senior Account Executive, Everstage</div>
+          <div>
+            <a class="btn" href="#">Save your seat</a>
+            <div class="micro">Free. 45-minute live demo.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- LOGO STRIP -->
+  <div class="container">
+    <div class="logos">
+      <div class="eyebrow-caps">Trusted by RevOps and Sales Comp teams at</div>
+      <div class="logos-row">
+        <span>Notion</span>
+        <span>Trimble</span>
+        <span>Wiley</span>
+        <span>Docebo</span>
+        <span>Rocket Lawyer</span>
+        <span>Diligent</span>
+        <span>Popmenu</span>
+        <span>DealerTire</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- UPCOMING SESSIONS -->
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow-caps">Upcoming</div>
+      <h2>What's next on the calendar.</h2>
+      <p class="section-sub">Six sessions ahead, fortnightly. Pick the one that matches the comp problem you're working on this quarter.</p>
+      <div class="sessions">
+        <div class="session-card">
+          <div class="session-date">Wed, May 20 · 12 PM EST</div>
+          <div class="session-title">How to run your first month on Everstage after moving off spreadsheets</div>
+          <p class="session-desc">What day one and month one look like in the product. Plan design, calc engine, Databooks, and the new handoff between Finance and reps.</p>
+          <a class="session-link" href="#">Save your seat →</a>
+        </div>
+        <div class="session-card">
+          <div class="session-date">Wed, Jun 3 · 12 PM EST</div>
+          <div class="session-theme">[Theme: Payee Experience Track]</div>
+          <div class="session-title-tbd">[TBD]</div>
+          <a class="session-link" href="#">Save your seat →</a>
+        </div>
+        <div class="session-card">
+          <div class="session-date">Wed, Jun 17 · 12 PM EST</div>
+          <div class="session-title">How comp teams close a quarter in two days when plans change mid-quarter</div>
+          <p class="session-desc">The calc engine and audit trail running through close, with mid-quarter plan changes handled in Time Machine instead of a re-model.</p>
+          <a class="session-link" href="#">Save your seat →</a>
+        </div>
+        <div class="session-card">
+          <div class="session-date">Wed, Jul 1 · 12 PM EST</div>
+          <div class="session-title">How to switch off your legacy ICM without restating last year</div>
+          <p class="session-desc">Migration playbook, live: plan portability, history import, dispute continuity, and RBAC mapping. Built for buyers actively scoping a switch.</p>
+          <a class="session-link" href="#">Save your seat →</a>
+        </div>
+        <div class="session-card">
+          <div class="session-date">Wed, Jul 15 · 12 PM EST</div>
+          <div class="session-title">How to design a Q3 comp plan that holds up after three mid-year amendments</div>
+          <p class="session-desc">Multi-product, multi-tier, accelerators, SPIFFs. Time Machine simulation before publish, so the first month-end is not the first time anyone sees the math.</p>
+          <a class="session-link" href="#">Save your seat →</a>
+        </div>
+        <div class="session-card">
+          <div class="session-date">Wed, Jul 29 · 12 PM EST</div>
+          <div class="session-title">How to hand Finance numbers they can sign off on without a side meeting</div>
+          <p class="session-desc">Out-of-the-box BI, custom dashboards, ASC 606 alignment, RBAC, and an audit trail an external auditor can follow on their own.</p>
+          <a class="session-link" href="#">Save your seat →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ON-DEMAND -->
+  <section class="section section-tint">
+    <div class="container">
+      <div class="eyebrow-caps">On-demand</div>
+      <h2>A library that fills as we go.</h2>
+      <p class="section-sub">Every Everstage Live recording posts within 24 hours. Watch the parts you need, skip the rest.</p>
+      <div class="videos">
+        <div class="video-card">
+          <div class="video-thumb"><svg viewBox="0 0 48 48" fill="currentColor"><path d="M16 12l20 12-20 12V12z"/></svg></div>
+          <div class="video-body">
+            <div class="video-title">[Session 1 placeholder title]</div>
+            <p class="video-desc">[One-line, hands-on buyer-pain summary.]</p>
+            <a class="video-link" href="#">Watch →</a>
+          </div>
+        </div>
+        <div class="video-card">
+          <div class="video-thumb"><svg viewBox="0 0 48 48" fill="currentColor"><path d="M16 12l20 12-20 12V12z"/></svg></div>
+          <div class="video-body">
+            <div class="video-title">[Session 2 placeholder title]</div>
+            <p class="video-desc">[One-line, hands-on buyer-pain summary.]</p>
+            <a class="video-link" href="#">Watch →</a>
+          </div>
+        </div>
+        <div class="video-card">
+          <div class="video-thumb"><svg viewBox="0 0 48 48" fill="currentColor"><path d="M16 12l20 12-20 12V12z"/></svg></div>
+          <div class="video-body">
+            <div class="video-title">[Session 3 placeholder title]</div>
+            <p class="video-desc">[One-line, hands-on buyer-pain summary.]</p>
+            <a class="video-link" href="#">Watch →</a>
+          </div>
+        </div>
+        <div class="video-card">
+          <div class="video-thumb"><svg viewBox="0 0 48 48" fill="currentColor"><path d="M16 12l20 12-20 12V12z"/></svg></div>
+          <div class="video-body">
+            <div class="video-title">[Session 4 placeholder title]</div>
+            <p class="video-desc">[One-line, hands-on buyer-pain summary.]</p>
+            <a class="video-link" href="#">Watch →</a>
+          </div>
+        </div>
+        <div class="video-card">
+          <div class="video-thumb"><svg viewBox="0 0 48 48" fill="currentColor"><path d="M16 12l20 12-20 12V12z"/></svg></div>
+          <div class="video-body">
+            <div class="video-title">[Session 5 placeholder title]</div>
+            <p class="video-desc">[One-line, hands-on buyer-pain summary.]</p>
+            <a class="video-link" href="#">Watch →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow-caps">How it works</div>
+      <h2>Built for the teams running comp every day.</h2>
+      <p class="section-sub">For Ops, Finance, Sales Comp, and RevOps practitioners who own the calc engine, not the executive review.</p>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-num">01 · Live workflows</div>
+          <h3>One workflow per session, run end to end.</h3>
+          <p>Each session bundles three or four modules around a problem comp teams work through every quarter. Close, mid-quarter plan changes via Time Machine, plan design with accelerators and SPIFFs, ICM migrations, and audit-ready reporting. The product runs the way it runs for paying customers.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">02 · AE-hosted</div>
+          <h3>Hosted by an AE who lives in this every day.</h3>
+          <p>Everstage AEs spend their week with RevOps and Finance leaders running comp. They narrate the workflow the way a comp ops manager would, in the live product.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">03 · 45-minute format</div>
+          <h3>45 minutes. Calendar-friendly by design.</h3>
+          <p>35 minutes of live workflow plus 10 minutes of Q&amp;A. Registered questions go first, chat next. Show up, take one thing back to your team, get on with your day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="quote">
+    <span class="quote-mark">"</span>
+    <div class="quote-text">With sales reps being able to see their progress and us having the visibility into how we're moving towards our goals in real time, we truly understand where we're at as a company. We've been able to hit five goals that we weren't always hitting before.</div>
+    <div class="quote-attr"><b>Nate Johns</b>, Head of Revenue Operations, Popmenu</div>
+  </section>
+
+  <!-- PITCH A SESSION -->
+  <section class="section" style="border-bottom: none;">
+    <div class="container">
+      <div class="eyebrow-caps">Pitch a session</div>
+      <h2>Don't see your comp problem in the next six?</h2>
+      <p class="section-sub">Tell us the workflow you'd want walked through live. We add the most-asked topics to the calendar.</p>
+      <form class="pitch-form" onsubmit="event.preventDefault();">
+        <input class="input" type="text" placeholder="The comp problem you're working on this quarter" />
+        <div class="pitch-row">
+          <input class="input" type="email" placeholder="Work email" />
+          <button class="btn" type="submit">Pitch a session</button>
+        </div>
+        <div class="pitch-micro">One reply when your topic ships. No newsletter, no nurture.</div>
+      </form>
+    </div>
+  </section>
+
+  <!-- BOOK A DEMO BANNER -->
+  <section class="banner">
+    <div class="banner-inner">
+      <h2>Ready to see what Everstage can do for your comp ops team?</h2>
+      <a class="btn btn-light btn-large" href="#">Book a demo</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Everstage</div>
+          <p class="footer-tag">Sales compensation, CPQ, and territory planning on one AI-powered platform.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="#">Incentives</a>
+          <a href="#">CPQ</a>
+          <a href="#">Planning</a>
+          <a href="#">Platform</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="#">Blog</a>
+          <a href="#">Webinars</a>
+          <a href="#">Guides</a>
+          <a href="#">Customers</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Careers</a>
+          <a href="#">Press</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Everstage Inc. All rights reserved.</span>
+        <span><a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms of Service</a></span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
